@@ -17,7 +17,7 @@
            uses: peter-evans/create-pull-request@v4
            with:
              token: ${{ secrets.TOKEN }}
-             branch: main
+             branch: master
              commit-message: Automated PR for Issue ${{ github.event.issue.number }}
              title: Automated PR from Issue #${{ github.event.inputs.issue_number }}
              labels: ${{ github.event.inputs.issue_labels }}
