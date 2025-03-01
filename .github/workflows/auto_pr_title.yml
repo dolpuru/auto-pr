@@ -22,7 +22,7 @@ jobs:
       with:
         route: GET /repos/${{ github.repository }}/issues/${{ steps.extract.outputs.issue_number }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
     - name: Update PR
       run: |
         ISSUE_TITLE=$(echo '${{ steps.issue.outputs.data }}' | jq -r '.title')
