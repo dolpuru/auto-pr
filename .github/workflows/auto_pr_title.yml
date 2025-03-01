@@ -1,34 +1,50 @@
-   name: PR Title Sync with Issue
+name: Sync PR with Issue
 
-   on:
-     pull_request:
-       types: [opened]
+on:
+  pull_request:
+    types: [opened]
 
-   jobs:
-     sync-title:
-       runs-on: ubuntu-latest
+jobs:
+  sync-pr-info:
+    runs-on: ubuntu-latest
 
-       steps:
-       - name: Check out the repository
-         uses: actions/checkout@v2
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
 
-       - name: Extract branch info
-         id: extract
-         run: echo "::set-output name=branch_number::$(echo '${{ github.head_ref }}' | grep -oP '(?<=feat-)\d+')"
+    - name: Extract branch info
+      id: extract
+      run: echo "::set-output name=issue_number::$(echo '${{ github.head_ref }}' | grep -oP '(?<=-)\d+')"
 
-       - name: Get Issue Title
-         id: issue
-         uses: octokit/request-action@v2.x
-         with:
-           route: GET /repos/${{ github.repository }}/issues/${{ steps.extract.outputs.branch_number }}
-         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Get Issue Details
+      id: issue
+      uses: octokit/request-action@v2.x
+      with:
+        route: GET /repos/${{ github.repository }}/issues/${{ steps.extract.outputs.issue_number }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-       - name: Set PR Title
-         if: steps.issue.outputs.data
-         run: |
-           ISSUE_TITLE=$(echo '${{ steps.issue.outputs.data }}' | jq -r .title)
-           gh pr edit ${{ github.event.pull_request.number }} --title "$ISSUE_TITLE"
-         env:
-           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-           jq: "sudo apt-get install jq -y"
+    - name: Update PR
+      run: |
+        ISSUE_TITLE=$(echo '${{ steps.issue.outputs.data }}' | jq -r .title)
+        ASSIGNEES=$(echo '${{ steps.issue.outputs.data }}' | jq -r '.assignees[].login' | paste -sd ',' -)
+        LABELS=$(echo '${{ steps.issue.outputs.data }}' | jq -r '.labels[].name' | paste -sd ',' -)
+
+        # Update PR Title
+        gh pr edit ${{ github.event.pull_request.number }} --title "$ISSUE_TITLE"
+
+        # Update PR Body
+        gh pr edit ${{ github.event.pull_request.number }} --body "Closes #${{ steps.extract.outputs.issue_number }}"
+
+        # Update PR Assignees
+        if [[ ! -z "$ASSIGNEES" ]]; then
+          gh pr edit ${{ github.event.pull_request.number }} --add-assignee "${ASSIGNEES}"
+        fi
+
+        # Update PR Labels
+        if [[ ! -z "$LABELS" ]]; then
+          gh pr edit ${{ github.event.pull_request.number }} --add-label "${LABELS}"
+        fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        jq: "sudo apt-get install jq -y"
