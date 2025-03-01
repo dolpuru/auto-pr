@@ -25,14 +25,15 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Update PR
       run: |
-        ISSUE_TITLE=$(echo '${{ steps.issue.outputs.data }}' | jq -r .title)
+        ISSUE_TITLE=$(echo '${{ steps.issue.outputs.data }}' | jq -r '.title')
+        
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
         fi
-    
-        ASSIGNEES=$(echo '${{ steps.issue.outputs.data }}' | jq -r '[.assignees[].login]' | jq -r 'join(",")')
-        LABELS=$(echo '${{ steps.issue.outputs.data }}' | jq -r '[.labels[].name]' | jq -r 'join(",")')
+        
+        ASSIGNEES=$(echo '${{ steps.issue.outputs.data }}' | jq -r '[.assignees[].login] | join(",")')
+        LABELS=$(echo '${{ steps.issue.outputs.data }}' | jq -r '[.labels[].name] | join(",")')
     
         # Update PR Title
         if [[ ! -z "$ISSUE_TITLE" ]]; then
@@ -40,16 +41,23 @@ jobs:
         fi
     
         # Update PR Body
-        gh pr edit ${{ github.event.pull_request.number }} --body "Closes #${{ steps.extract.outputs.issue_number }}"
+        PR_BODY="Closes #${{ steps.extract.outputs.issue_number }}"
+        gh pr edit ${{ github.event.pull_request.number }} --body "$PR_BODY"
     
         # Update PR Assignees
         if [[ ! -z "$ASSIGNEES" ]]; then
-          gh pr edit ${{ github.event.pull_request.number }} --add-assignee "${ASSIGNEES}"
+          IFS=',' read -ra ADDR <<< "$ASSIGNEES"
+          for assignee in "${ADDR[@]}"; do
+            gh pr edit ${{ github.event.pull_request.number }} --add-assignee "$assignee"
+          done
         fi
     
         # Update PR Labels
         if [[ ! -z "$LABELS" ]]; then
-          gh pr edit ${{ github.event.pull_request.number }} --add-label "${LABELS}"
+          IFS=',' read -ra ADDR <<< "$LABELS"
+          for label in "${ADDR[@]}"; do
+            gh pr edit ${{ github.event.pull_request.number }} --add-label "$label"
+          done
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
