@@ -1,0 +1,34 @@
+   name: PR Title Sync with Issue
+
+   on:
+     pull_request:
+       types: [opened]
+
+   jobs:
+     sync-title:
+       runs-on: ubuntu-latest
+
+       steps:
+       - name: Check out the repository
+         uses: actions/checkout@v2
+
+       - name: Extract branch info
+         id: extract
+         run: echo "::set-output name=branch_number::$(echo '${{ github.head_ref }}' | grep -oP '(?<=feat-)\d+')"
+
+       - name: Get Issue Title
+         id: issue
+         uses: octokit/request-action@v2.x
+         with:
+           route: GET /repos/${{ github.repository }}/issues/${{ steps.extract.outputs.branch_number }}
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+       - name: Set PR Title
+         if: steps.issue.outputs.data
+         run: |
+           ISSUE_TITLE=$(echo '${{ steps.issue.outputs.data }}' | jq -r .title)
+           gh pr edit ${{ github.event.pull_request.number }} --title "$ISSUE_TITLE"
+         env:
+           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+           jq: "sudo apt-get install jq -y"
