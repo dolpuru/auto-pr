@@ -4,7 +4,7 @@ about: Suggest an idea for this project
 title: tt
 labels: bug
 assignees: dolpuru
-projects: tttt
+project: tttt
 ---
 
 **Is your feature request related to a problem? Please describe.**
