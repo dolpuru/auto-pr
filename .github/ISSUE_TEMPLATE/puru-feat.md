@@ -1,7 +1,7 @@
 ---
 name: puru feat
 about: Suggest an idea for this project
-title: ''
+title: tt
 labels: bug
 assignees: dolpuru
 
