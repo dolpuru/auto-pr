@@ -72,3 +72,6 @@ jobs:
 
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        ISSUE_DATA: ${{ env.ISSUE_DATA }}
+        PULL_REQUEST_NUMBER: ${{ env.PULL_REQUEST_NUMBER }}
+        ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
