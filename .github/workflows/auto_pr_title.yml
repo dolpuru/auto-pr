@@ -31,8 +31,8 @@ jobs:
           exit 1
         fi
     
-        ASSIGNEES=$(echo "${{ steps.issue.outputs.data }}" | jq -r '[.assignees[].login] | join(",")')
-        LABELS=$(echo "${{ steps.issue.outputs.data }}" | jq -r '[.labels[].name] | join(",")')
+        ASSIGNEES=$(echo "${{ steps.issue.outputs.data }}" | jq -r "[.assignees[].login] | join(',')")
+        LABELS=$(echo "${{ steps.issue.outputs.data }}" | jq -r "[.labels[].name] | join(',')")
     
         # Update PR Title
         if [[ ! -z "$ISSUE_TITLE" ]]; then
