@@ -50,13 +50,5 @@ jobs:
             gh pr edit ${{ github.event.pull_request.number }} --add-assignee "$assignee"
           done
         fi
-    
-        # Update PR Labels
-        if [[ ! -z "$LABELS" ]]; then
-          IFS=',' read -r -a ADDR <<< "$LABELS"
-          for label in "${ADDR[@]}"; do
-            gh pr edit ${{ github.event.pull_request.number }} --add-label "$label"
-          done
-        fi
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
