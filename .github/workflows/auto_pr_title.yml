@@ -42,13 +42,6 @@ jobs:
         # Update PR Body
         PR_BODY="Closes #${{ steps.extract.outputs.issue_number }}"
         gh pr edit ${{ github.event.pull_request.number }} --body "$PR_BODY"
-    
-        # Update PR Assignees
-        if [[ ! -z "$ASSIGNEES" ]]; then
-          IFS=',' read -r -a ADDR <<< "$ASSIGNEES"
-          for assignee in "${ADDR[@]}"; do
-            gh pr edit ${{ github.event.pull_request.number }} --add-assignee "$assignee"
-          done
-        fi
+
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
