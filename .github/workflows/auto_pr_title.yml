@@ -41,7 +41,7 @@ jobs:
         fi        
     - name: Update PR
       run: |
-        ISSUE_TITLE=$(echo jq -r '.title' <<< \"$ISSUE_DATA\" )
+        ISSUE_TITLE=$(echo  \"$ISSUE_DATA\" | jq -r '.title')
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
@@ -49,8 +49,8 @@ jobs:
         echo "$ISSUE_TITLE"
 
     
-        ASSIGNEES=$(echo \"${{ steps.issue.outputs.data }}\" | jq -r \"[.assignees[].login] | join\(','\)\")
-        LABELS=$(echo \"${{ steps.issue.outputs.data }}\" | jq -r \"[.labels[].name] | join\(','\)\")
+        ASSIGNEES=$(echo \"${{ steps.issue.outputs.data }}\" | jq -r '[.assignees[].login] | join\(','\)')
+        LABELS=$(echo \"${{ steps.issue.outputs.data }}\" | jq -r '[.labels[].name] | join\(','\)')
     
         # Update PR Title
         if [[ ! -z "$ISSUE_TITLE" ]]; then
