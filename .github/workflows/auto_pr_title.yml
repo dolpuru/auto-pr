@@ -42,6 +42,7 @@ jobs:
         # Update PR Body
         PR_BODY="Closes #${{ steps.extract.outputs.issue_number }}"
         gh pr edit ${{ github.event.pull_request.number }} --body "$PR_BODY"
+        )
 
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
