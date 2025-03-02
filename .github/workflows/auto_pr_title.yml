@@ -38,10 +38,19 @@ jobs:
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
-        fi        
-    - name: Update PR
+        fi       
+
+    - name: Update PR2
       run: |
-        ISSUE_TITLE=$(echo  \"$ISSUE_DATA\" | jq -r '.title')
+        ISSUE_TITLE=$(echo jq -r '.title' <<< \"$ISSUE_DATA\" ) >> $GITHUB_ENV
+        if [ -z "$ISSUE_TITLE" ]; then
+          echo "Failed to fetch the issue title."
+          exit 1
+        fi        
+        
+    - name: Update PR3
+      run: |
+        ISSUE_TITLE=$(echo jq -r '.title' <<< \"$ISSUE_DATA\" 
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
@@ -86,3 +95,4 @@ jobs:
         ISSUE_DATA: ${{ env.ISSUE_DATA }}
         PULL_REQUEST_NUMBER: ${{ env.PULL_REQUEST_NUMBER }}
         ISSUE_NUMBER: ${{ env.ISSUE_NUMBER }}
+        ISSUE_TT: ${{ env.ISSUE_TITLE }}
