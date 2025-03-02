@@ -23,8 +23,6 @@ jobs:
         route: GET /repos/${{ github.repository }}/issues/${{ steps.extract.outputs.issue_number }}
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
-    - name: Set Environment Variables
-      run: echo "ISSUE_DATA=${{ steps.issue.outputs.data }}" >> $GITHUB_ENV
 
 
     - name: Set Environment Variables
