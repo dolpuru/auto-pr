@@ -32,7 +32,11 @@ jobs:
         echo \"ISSUE_NUMBER=${{ steps.extract.outputs.issue_number }}\" >> $GITHUB_ENV
     - name: Update PR
       run: |
-        ISSUE_TITLE=$(echo "$ISSUE_DATA" | jq -r '.title')
+        ISSUE_TITLE=$(echo $ISSUE_DATA | jq -r '.title')
+        if [ -z "$ISSUE_TITLE" ]; then
+          echo "Failed to fetch the issue title."
+          exit 1
+        fi
 
     
         ASSIGNEES=$(echo "${{ steps.issue.outputs.data }}" | jq -r "[.assignees[].login] | join(',')")
