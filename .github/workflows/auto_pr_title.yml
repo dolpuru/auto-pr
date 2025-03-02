@@ -38,7 +38,7 @@ jobs:
       
     - name: Update PR
       run: |
-        ISSUE_TITLE=$(echo "$ISSUE_DATA" | jq -r 'title')
+        ISSUE_TITLE=$(echo jq -r '.title' <<< "$ISSUE_DATA" )
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
