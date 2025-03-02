@@ -23,9 +23,18 @@ jobs:
         route: GET /repos/${{ github.repository }}/issues/${{ steps.extract.outputs.issue_number }}
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
+    - name: Set Environment Variables
+      run: echo "ISSUE_DATA=${{ steps.issue.outputs.data }}" >> $GITHUB_ENV
+
+    - name: Set Environment Variables
+      run: |
+        echo "ISSUE_DATA=${{ toJSON(steps.issue.outputs.data) }}" >> $GITHUB_ENV
+        echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+        echo "ISSUE_NUMBER=${{ steps.extract.outputs.issue_number }}" >> $GITHUB_ENV
+        
     - name: Update PR
       run: |
-        ISSUE_TITLE=$(echo '${{ steps.issue.outputs.data }}' | jq -r '.title')
+        ISSUE_TITLE=$(echo "$ISSUE_DATA" | jq -r '.title')
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
