@@ -44,7 +44,9 @@ jobs:
       run: |
         ISSUE_TITLE=$(echo jq -r '.title' <<< \"$ISSUE_DATA\" ) >> $GITHUB_ENV
         echo \"$ISSUE_TT\"
-        echo env.ISSUE_DATA
+        echo $ISSUE_DATA
+        echo "${{ env.ISSUE_DATA}}"
+        echo \"$ISSUE_DATA\"
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
