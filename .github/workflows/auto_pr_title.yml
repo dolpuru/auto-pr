@@ -62,8 +62,6 @@ jobs:
         fi
 
     
-        ASSIGNEES=$(echo jq -r '[.assignees[].login] |  join\(","\)' <<< ${{ steps.issue.outputs.data }}})
-        LABELS=$(echo jq -r '[.labels[].name] |  join(",")' <<< \"${{ steps.issue.outputs.data }}\" )
     
         # Update PR Title
         if [[ ! -z "$ISSUE_TITLE" ]]; then
@@ -75,29 +73,6 @@ jobs:
         gh pr edit ${{ github.event.pull_request.number }} --body "$PR_BODY"
 
         
-        
-        # Update PR Assignees
-        if [[ ! -z "$ASSIGNEES" ]]; then
-          # Ensure each assignee is properly trimmed and any unexpected quotes are handled
-          IFS=',' read -r -a ADDR <<< "$ASSIGNEES"
-          for assignee in "${ADDR[@]}"; do
-            # Trim whitespace or extraneous quote-like characters
-            clean_assignee=$(echo "$assignee" | tr -d '"')
-            gh pr edit ${{ github.event.pull_request.number }} --add-assignee "$clean_assignee"
-          done
-        fi
-        
-        # Update PR Labels
-        if [[ ! -z "$LABELS" ]]; then
-          IFS=',' read -r -a ADDR <<< "$LABELS"
-          for label in "${ADDR[@]}"; do
-            # Trim whitespace or extraneous quote-like characters
-            clean_label=$(echo "$label" | xargs)
-            gh pr edit "${{ github.event.pull_request.number }}" --add-label "$clean_label"
-          done
-        fi
-        
-        )
 
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
