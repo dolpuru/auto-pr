@@ -47,6 +47,7 @@ jobs:
         echo $ISSUE_DATA
         echo "${{ env.ISSUE_DATA}}"
         echo \"$ISSUE_DATA\"
+        echo \"${{ toJSON(steps.issue.outputs.data) }}\"
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
