@@ -62,7 +62,7 @@ jobs:
         fi
 
     
-        ASSIGNEES=$(echo jq -r '[.assignees[].login] |  join(",")' <<< \"${{ steps.issue.outputs.data }}\")
+        ASSIGNEES=$(echo jq -r '[.assignees[].login] |  join\(","\)' <<< ${{ steps.issue.outputs.data }})
         LABELS=$(echo jq -r '[.labels[].name] |  join(",")' <<< \"${{ steps.issue.outputs.data }}\" )
     
         # Update PR Title
