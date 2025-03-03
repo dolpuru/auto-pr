@@ -78,9 +78,12 @@ jobs:
         
         # Update PR Assignees
         if [[ ! -z "$ASSIGNEES" ]]; then
+          # Ensure each assignee is properly trimmed and any unexpected quotes are handled
           IFS=',' read -r -a ADDR <<< "$ASSIGNEES"
           for assignee in "${ADDR[@]}"; do
-            gh pr edit ${{ github.event.pull_request.number }} --add-assignee "$assignee"
+            # Trim whitespace or extraneous quote-like characters
+            clean_assignee=$(echo "$assignee" | tr -d '"')
+            gh pr edit ${{ github.event.pull_request.number }} --add-assignee "$clean_assignee"
           done
         fi
         
@@ -88,7 +91,9 @@ jobs:
         if [[ ! -z "$LABELS" ]]; then
           IFS=',' read -r -a ADDR <<< "$LABELS"
           for label in "${ADDR[@]}"; do
-            gh pr edit ${{ github.event.pull_request.number }} --add-label "$label"
+            # Trim whitespace or extraneous quote-like characters
+            clean_label=$(echo "$label" | xargs)
+            gh pr edit "${{ github.event.pull_request.number }}" --add-label "$clean_label"
           done
         fi
         
