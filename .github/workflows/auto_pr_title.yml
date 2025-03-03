@@ -55,12 +55,11 @@ jobs:
         
     - name: Update PR3
       run: |
-        ISSUE_TITLE=$(echo jq -r '.title' <<< \"${{ toJSON(steps.issue.outputs.data) }}\"
+        ISSUE_TITLE=$(echo jq -r '.title' <<< \"${{ toJSON(steps.issue.outputs.data) }}\")
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
         fi
-        echo "$ISSUE_TITLE"
 
     
         ASSIGNEES=$(echo \"${{ steps.issue.outputs.data }}\" | jq -r '[.assignees[].login] | join\(','\)')
