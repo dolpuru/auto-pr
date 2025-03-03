@@ -63,7 +63,7 @@ jobs:
 
     
         ASSIGNEES=$(echo \"${{ steps.issue.outputs.data }}\" | jq -r '[.assignees[].login] |  join(",")')
-        LABELS=$(echo \"${{ steps.issue.outputs.data }}\" | jq -r '[.labels[].name] | join\(','\)')
+        LABELS=$(echo \"${{ steps.issue.outputs.data }}\" | jq -r '[.labels[].name] |  join(",")')
     
         # Update PR Title
         if [[ ! -z "$ISSUE_TITLE" ]]; then
