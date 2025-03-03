@@ -33,7 +33,7 @@ jobs:
         
     - name: Update PR
       run: |
-        ISSUE_TITLE=$(echo "${{ toJSON(steps.issue.outputs.data) }}" | jq -r '.title')
+        ISSUE_TITLE=$(echo ${{ toJSON(steps.issue.outputs.data) }} | jq -r '.title')
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
