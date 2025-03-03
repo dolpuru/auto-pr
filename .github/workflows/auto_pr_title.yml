@@ -29,33 +29,11 @@ jobs:
       run: |
         echo \"ISSUE_DATA=${{ toJSON(steps.issue.outputs.data) }}\" >> $GITHUB_ENV
         echo \"PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}\" >> $GITHUB_ENV
-        echo \"ISSUE_NUMBER=${{ steps.extract.outputs.issue_number }}\" >> $GITHUB_ENV
-
-  
-    - name: Update PR1
-      run: |
-        ISSUE_TITLE=$(echo  \"$ISSUE_DATA\" | jq -r '.title')
-        if [ -z "$ISSUE_TITLE" ]; then
-          echo "Failed to fetch the issue title."
-          exit 1
-        fi       
-
-    - name: Update PR2
-      run: |
-        ISSUE_TITLE=$(echo jq -r '.title' <<< \"$ISSUE_DATA\" ) >> $GITHUB_ENV
-        echo \"$ISSUE_TT\"
-        echo $ISSUE_DATA
-        echo "${{ env.ISSUE_DATA}}"
-        echo \"$ISSUE_DATA\"
-        echo \"${{ toJSON(steps.issue.outputs.data) }}\"
-        if [ -z "$ISSUE_TITLE" ]; then
-          echo "Failed to fetch the issue title."
-          exit 1
-        fi        
+        echo \"ISSUE_NUMBER=${{ steps.extract.outputs.issue_number }}\" >> $GITHUB_ENV  
         
-    - name: Update PR3
+    - name: Update PR
       run: |
-        ISSUE_TITLE=$(echo jq -r '.title' <<< \"${{ toJSON(steps.issue.outputs.data) }}\")
+        ISSUE_TITLE=$(echo \"${{ toJSON(steps.issue.outputs.data) }}\" | jq -r '.title')
         if [ -z "$ISSUE_TITLE" ]; then
           echo "Failed to fetch the issue title."
           exit 1
