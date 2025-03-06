@@ -1,8 +1,8 @@
 ---
-name: <bugfix><leo>
+name: (bugfix)(LEO)
 about: bugfix-leo
 title: 
 labels: Bugfix
-assignees: dolpuru
+assignees: pjinhyung1
 project: 
 ---
