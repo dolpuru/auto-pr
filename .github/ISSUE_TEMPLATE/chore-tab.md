@@ -1,5 +1,5 @@
 ---
-name: Chore
+name: Chore2
 about: tab
 title: 
 labels: Chore
