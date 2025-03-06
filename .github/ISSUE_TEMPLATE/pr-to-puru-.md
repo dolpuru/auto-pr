@@ -1,5 +1,5 @@
 ---
-name: [bugfix][LEO]
+name: <bugfix><leo>
 about: bugfix-leo
 title: 
 labels: Bugfix
