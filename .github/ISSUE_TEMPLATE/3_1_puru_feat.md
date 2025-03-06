@@ -2,7 +2,7 @@
 name: 🟪 Feat
 about: Puru
 title: 
-labels: Feat
+labels: Feat, bug
 assignees: dolpuru
 project: 
 ---
