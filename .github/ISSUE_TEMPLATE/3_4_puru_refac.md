@@ -1,6 +1,6 @@
 ---
-name: 🟪 Puru Refac
-about: puru
+name: 🟪 Refac
+about: Puru
 title: 
 labels: Refac
 assignees: dolpuru

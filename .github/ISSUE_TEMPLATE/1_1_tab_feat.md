@@ -1,6 +1,6 @@
 ---
-name: 🟦 Tab Feat
-about: tab
+name: 🟦 Feat
+about: Tab
 title: 
 labels: Feat
 assignees: akshxl09

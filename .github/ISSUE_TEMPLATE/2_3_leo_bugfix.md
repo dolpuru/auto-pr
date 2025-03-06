@@ -1,6 +1,6 @@
 ---
-name: 🟩 Leo Bugfix
-about: leo
+name: 🟩 Bugfix
+about: Leo
 title: 
 labels: Bugfix
 assignees: pjinhyung1

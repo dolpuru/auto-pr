@@ -1,6 +1,6 @@
 ---
-name: 🟦 Tab Refac
-about: tab
+name: 🟦 Refac
+about: Tab
 title: 
 labels: Refac
 assignees: akshxl09

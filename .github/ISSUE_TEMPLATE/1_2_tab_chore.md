@@ -1,6 +1,6 @@
 ---
-name: 🟦 Tab Chore
-about: tab
+name: 🟦 Chore
+about: Tab
 title: 
 labels: Chore
 assignees: akshxl09

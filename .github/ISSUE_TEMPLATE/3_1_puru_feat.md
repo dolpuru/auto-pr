@@ -1,6 +1,6 @@
 ---
-name: 🟪 Puru Feat
-about: puru
+name: 🟪 Feat
+about: Puru
 title: 
 labels: Feat
 assignees: dolpuru

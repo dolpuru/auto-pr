@@ -1,6 +1,6 @@
 ---
-name: 🟩 Leo Feat
-about: leo
+name: 🟩 Feat
+about: Leo
 title: 
 labels: Feat
 assignees: pjinhyung1

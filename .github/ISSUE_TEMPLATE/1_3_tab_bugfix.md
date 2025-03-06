@@ -1,6 +1,6 @@
 ---
-name: 🟦 Tab Bugfix
-about: tab
+name: 🟦 Bugfix
+about: Tab
 title: 
 labels: Bugfix
 assignees: akshxl09
