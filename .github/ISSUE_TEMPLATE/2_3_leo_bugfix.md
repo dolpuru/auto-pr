@@ -1,5 +1,5 @@
 ---
-name: Leo-<Bugfix>
+name: 🟩 Leo Bugfix
 about: leo
 title: 
 labels: Bugfix

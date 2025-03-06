@@ -1,5 +1,5 @@
 ---
-name: Puru-<Refac>
+name: 🟪 Puru Refac
 about: puru
 title: 
 labels: Refac

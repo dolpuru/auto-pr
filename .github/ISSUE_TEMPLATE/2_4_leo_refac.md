@@ -1,5 +1,5 @@
 ---
-name: Leo-<Refac>
+name: 🟩 Leo Refac
 about: leo
 title: 
 labels: Refac

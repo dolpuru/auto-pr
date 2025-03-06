@@ -1,5 +1,5 @@
 ---
-name: Leo-<Feat>
+name: 🟩 Leo Feat
 about: leo
 title: 
 labels: Feat

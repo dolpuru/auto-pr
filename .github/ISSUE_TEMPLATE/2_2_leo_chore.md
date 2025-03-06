@@ -1,5 +1,5 @@
 ---
-name: Leo-<Chore>
+name: 🟩 Leo Chore
 about: leo
 title: 
 labels: Chore

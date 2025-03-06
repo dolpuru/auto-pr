@@ -1,5 +1,5 @@
 ---
-name: Tab-<Refac>
+name: 🟦 Tab Refac
 about: tab
 title: 
 labels: Refac

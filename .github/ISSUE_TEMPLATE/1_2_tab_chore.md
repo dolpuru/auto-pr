@@ -1,5 +1,5 @@
 ---
-name: Tab-<Chore>
+name: 🟦 Tab Chore
 about: tab
 title: 
 labels: Chore

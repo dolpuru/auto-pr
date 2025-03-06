@@ -1,5 +1,5 @@
 ---
-name: Tab-<Bugfix> 
+name: 🟦 Tab Bugfix
 about: tab
 title: 
 labels: Bugfix

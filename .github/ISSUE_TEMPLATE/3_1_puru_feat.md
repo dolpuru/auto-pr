@@ -1,5 +1,5 @@
 ---
-name: Puru-<Feat>
+name: 🟪 Puru Feat
 about: puru
 title: 
 labels: Feat
