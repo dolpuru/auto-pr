@@ -1,6 +1,6 @@
 ---
-name: <Chore | Leo> 
-about: chore-leo
+name: Chore
+about: leo
 title: 
 labels: Chore
 assignees: pjinhyung1

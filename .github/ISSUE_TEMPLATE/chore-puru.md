@@ -1,6 +1,6 @@
 ---
-name: <Chore | Puru> 
-about: chore-puru
+name: Chore
+about: puru
 title: 
 labels: Chore
 assignees: dolpuru
