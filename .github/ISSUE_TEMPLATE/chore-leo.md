@@ -1,5 +1,5 @@
 ---
-name: <Chore | Leo> 
+name: Leo-<Chore>
 about: leo
 title: 
 labels: Chore

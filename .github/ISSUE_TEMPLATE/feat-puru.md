@@ -1,5 +1,5 @@
 ---
-name: <Feat | Puru> 
+name: Puru-<Feat>
 about: puru
 title: 
 labels: Feat

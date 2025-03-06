@@ -1,5 +1,5 @@
 ---
-name: <Bugfix | Puru>
+name: Puru-<Bugfix>
 about: puru
 title: 
 labels: Bugfix

@@ -1,5 +1,5 @@
 ---
-name: <Feat | Tab> 
+name: Tab-<Feat>
 about: tab
 title: 
 labels: Feat

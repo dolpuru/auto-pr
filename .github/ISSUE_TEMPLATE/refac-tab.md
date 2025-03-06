@@ -1,5 +1,5 @@
 ---
-name: <Refac | Tab> 
+name: Tab-<Refac>
 about: tab
 title: 
 labels: Refac

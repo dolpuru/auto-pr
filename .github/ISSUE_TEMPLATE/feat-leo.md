@@ -1,5 +1,5 @@
 ---
-name: <Feat | Leo> 
+name: Leo-<Feat>
 about: leo
 title: 
 labels: Feat

@@ -1,5 +1,5 @@
 ---
-name: <Refac | Puru> 
+name: Puru-<Refac>
 about: puru
 title: 
 labels: Refac
