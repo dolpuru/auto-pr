@@ -1,6 +1,6 @@
 ---
 name: <Bugfix | Leo> 
-about: ㅤ
+about: ㅤ 
 title: 
 labels: Bugfix
 assignees: pjinhyung1
