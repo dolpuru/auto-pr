@@ -1,6 +1,6 @@
 ---
 name: <Bugfix | Tab> 
-about: bugfix-tab
+about: tab
 title: 
 labels: Bugfix
 assignees: akshxl09

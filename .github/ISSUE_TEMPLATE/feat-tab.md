@@ -1,6 +1,6 @@
 ---
 name: <Feat | Tab> 
-about: feat-tab
+about: tab
 title: 
 labels: Feat
 assignees: akshxl09

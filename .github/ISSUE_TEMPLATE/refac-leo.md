@@ -1,6 +1,6 @@
 ---
 name: <Refac | Leo> 
-about: Refac-leo
+about: leo
 title: 
 labels: Refac
 assignees: pjinhyung1

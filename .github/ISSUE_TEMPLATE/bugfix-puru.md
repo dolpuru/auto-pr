@@ -1,6 +1,6 @@
 ---
 name: <Bugfix | Puru>
-about: bugfix-puru
+about: puru
 title: 
 labels: Bugfix
 assignees: dolpuru

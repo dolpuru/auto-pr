@@ -1,6 +1,6 @@
 ---
 name: <Feat | Puru> 
-about: feat-puru
+about: puru
 title: 
 labels: Feat
 assignees: dolpuru
