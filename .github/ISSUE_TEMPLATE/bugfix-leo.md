@@ -1,6 +1,6 @@
 ---
 name: <Bugfix | Leo> 
-about: &nasp
+about: .
 title: 
 labels: Bugfix
 assignees: pjinhyung1
